@@ -3299,6 +3299,18 @@ html.er body .finder{border-radius:var(--pl-r-xl)!important;box-shadow:var(--pl-
 /* ---------- Tempo (19.11.2026): --plH ohne Vererbung, nur an #main gesetzt (plus.js) ---------- */
 @property --plH{syntax:'<length>';inherits:false;initial-value:158px}
 
+
+/* Winterkarte Termin-Bereich wie Start-Aktion (Tiry 23.11.2026): kein Pink/Magenta, Champagner + Velocenter-Rot, Schnee über Schrift nur 12 % */
+.wcard .wcp small b{color:#F3CFA6!important}
+.wcard .wcp>b{background:linear-gradient(180deg,#FFFFFF 12%,#EEF2F7 52%,#F3CFA6 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
+.wcard .wbk b{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#F6D7B4!important}
+.wcard .wbk>i,.wcard .wsi>b{background:linear-gradient(135deg,#FF4A55,#E2232D 50%,#A50F1E)!important;box-shadow:0 8px 18px -6px rgba(226,35,45,.65)!important}
+.wcard .wbk{background:linear-gradient(135deg,rgba(20,22,28,.55),rgba(20,22,28,.35))!important}
+.wcard .winc>i{background:linear-gradient(135deg,rgba(20,22,28,.5),rgba(20,22,28,.3))!important}
+.wstrip.wcard{background:radial-gradient(60% 80% at 88% 20%,rgba(200,16,46,.28),transparent 70%),radial-gradient(45% 60% at 70% 110%,rgba(120,128,142,.22),transparent 70%),linear-gradient(120deg,#4A4F5A,#3D424C 45%,#44464E 80%,#4A4B52)!important}
+.wstrip.wcard:hover{box-shadow:0 36px 70px -26px rgba(27,30,37,.95),0 0 0 1px rgba(243,207,166,.35) inset!important}
+.lbp-tag u{color:#F6D7B4!important}
+.wcard .wsn{-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -6699,3 +6711,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 </html>
+<script>/* Winterkarte: Schnee über Schriftflächen nur 12 % (wie #snow auf der Startseite) */
+(function(){function m(){document.querySelectorAll('.wcard').forEach(function(c){var s=c.querySelector('.wsn');if(!s)return;var r=c.getBoundingClientRect();if(!r.width)return;var k=Math.min(2,devicePixelRatio||1)*.5,w=Math.ceil(r.width*k),h=Math.ceil(r.height*k),v=document.createElement('canvas');v.width=w;v.height=h;var x=v.getContext('2d');x.fillStyle='#000';x.fillRect(0,0,w,h);x.globalCompositeOperation='destination-out';x.filter='blur('+(6*k)+'px)';x.fillStyle='rgba(0,0,0,.88)';
+c.querySelectorAll('.wcp small,.wcp>b,.wcp em,.wst,.wbk,.winc>*,.wcd>span,.wgo,.wnote').forEach(function(e){var q=e.getBoundingClientRect();if(!q.width)return;x.fillRect((q.left-r.left-8)*k,(q.top-r.top-8)*k,(q.width+16)*k,(q.height+16)*k)});
+var u='url('+v.toDataURL()+')';s.style.webkitMaskImage=u;s.style.maskImage=u})}
+var t;function g(){clearTimeout(t);t=setTimeout(m,150)}addEventListener('resize',g);addEventListener('load',g);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(g);g()})();</script>
