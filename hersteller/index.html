@@ -5712,14 +5712,24 @@ function bewRender(d){d=d&&Array.isArray(d.items)&&d.items.filter(x=>x&&x.t).len
  BWP=it.map((x,i)=>Object.assign({k:'b'+i},x));BWQ=BWP.slice(3);
  const sc=$('.score b');if(sc&&d.score)sc.textContent=d.score;
  $('#qs').innerHTML=BWP.slice(0,3).map((x,i)=>bwCard(x,i?'':' on')).join('');it.splice(3);
- $('#qd').innerHTML=it.map((x,i)=>'<button class="'+(i?'':'on')+'" aria-label="Bewertung '+(i+1)+'"></button>').join('');qBind()}
+ $('#qd').innerHTML=it.map((x,i)=>'<button class="'+(i?'':'on')+'" aria-label="Bewertung '+(i+1)+'"></button>').join('');qBind();bwH()}
 
 /* ---------- Bewertungen laufen durch (Tiry 23.11.2026) ---------- */
-function bwCard(x,c){return '<div class="q'+(c||'')+(String(x.t).length>220?' ql':'')+'" data-k="'+x.k+'"><p>'+esc(x.t)+'</p><small>'+esc(x.n||'Kunde')+' · Google</small></div>'}
+function bwCard(x,c){return '<div class="q'+(c||'')+(String(x.t).length>220?' ql':'')+(typeof BWCUT!=='undefined'&&BWCUT.has(x.k)?' qcut':'')+'" data-k="'+x.k+'"><p>'+esc(x.t)+'</p><small>'+esc(x.n||'Kunde')+' · Google</small></div>'}
 let BWP=[],BWQ=[],BWSEH=true,BWBUSY=false;
 function bwNext(zeig){if(!BWQ.length){const s=new Set(zeig);BWQ=BWP.filter(x=>!s.has(x.k));for(let i=BWQ.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[BWQ[i],BWQ[j]]=[BWQ[j],BWQ[i]]}}
  return BWQ.shift()||null}
 function bwSt(e,o){for(const k in o)e.style.setProperty(k,o[k],'important')}
+/* Alle Bewertungskarten gleich hoch (Tiry 24.11.2026): Höhe = längste Bewertung im Vorrat, gedeckelt; sehr lange Texte blenden unten weich aus. Seite darunter springt nie. */
+let BWCUT=new Set(),BWHT=0;
+function bwH(){const box=$('#qs');if(!box||!BWP.length)return;const ref=box.firstElementChild;if(!ref)return;const w=ref.getBoundingClientRect().width;if(!w)return;
+ const quer=box.children.length>1&&Math.abs(box.children[1].getBoundingClientRect().top-ref.getBoundingClientRect().top)<4;
+ const m=document.createElement('div');bwSt(m,{position:'absolute',left:'0',top:'0',width:w+'px',visibility:'hidden','pointer-events':'none'});box.appendChild(m);
+ const hs=BWP.map(x=>{m.innerHTML=bwCard(x);const q=m.firstElementChild;bwSt(q,{height:'auto','min-height':'0'});return[x.k,q.getBoundingClientRect().height]});m.remove();
+ const cap=quer?Math.max(300,Math.round(innerHeight*.5)):Math.max(260,Math.round(innerHeight*.42));
+ const H=Math.ceil(Math.min(cap,Math.max(...hs.map(h=>h[1]))));BWCUT=new Set(hs.filter(h=>h[1]>H+1).map(h=>h[0]));BWHT=H;
+ box.style.setProperty('--qh',H+'px');[...box.children].forEach(c=>c.classList.toggle('qcut',BWCUT.has(c.dataset.k)))}
+{let t;addEventListener('resize',()=>{clearTimeout(t);t=setTimeout(()=>{if(!BWBUSY)bwH()},200)});if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>bwH())}
 function bwTick(){const box=$('#qs');if(!box||BWBUSY||document.hidden||!BWSEH||BWP.length<2)return;const cs=[...box.children];if(cs.length<2)return;
  const out=cs[0];let nx=bwNext(cs.slice(1).map(c=>c.dataset.k));if(!nx)nx=BWP.find(x=>x.k===out.dataset.k);if(!nx)return;BWBUSY=true;
  /* die neue Karte schiebt sich rechts herein und drückt im selben Zug die linke hinaus */
@@ -7178,6 +7188,11 @@ html.er body .srow:hover .ic.i3::after{transform:scale(.78);opacity:.7}
  background:radial-gradient(120% 120% at 30% 20%,#fff 0%,#F7F9FC 55%,#E6EBF2 100%);box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(27,30,37,.06),0 12px 24px -12px rgba(27,30,37,.45),0 3px 8px -4px rgba(27,30,37,.2)}
 .score>.sgl svg{width:30px;height:30px;display:block}
 @media (max-width:720px){.score>.sgl{width:48px;height:48px}.score>.sgl svg{width:25px;height:25px}}
+
+/* Bewertungskarten alle gleich hoch (Tiry 24.11.2026) */
+#qs .q{height:var(--qh,auto)!important;min-height:0!important;overflow:hidden}
+#qs .q p{flex:0 1 auto;min-height:0;overflow:hidden}
+#qs .q.qcut p{-webkit-mask-image:linear-gradient(180deg,#000 calc(100% - 2.6em),transparent);mask-image:linear-gradient(180deg,#000 calc(100% - 2.6em),transparent)}
 </style>
 </html>
 <script>/* Winterkarte: Schnee über Schriftflächen nur 12 % (wie #snow auf der Startseite) */
