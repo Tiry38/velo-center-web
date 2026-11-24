@@ -3299,24 +3299,6 @@ html.er body .finder{border-radius:var(--pl-r-xl)!important;box-shadow:var(--pl-
 /* ---------- Tempo (19.11.2026): --plH ohne Vererbung, nur an #main gesetzt (plus.js) ---------- */
 @property --plH{syntax:'<length>';inherits:false;initial-value:158px}
 
-
-/* Winterkarte Termin-Bereich wie Start-Aktion (Tiry 23.11.2026): kein Pink/Magenta, Champagner + Velocenter-Rot, Schnee über Schrift nur 12 % */
-.wcard .wcp small b{color:#F3CFA6!important}
-.wcard .wcp>b{background:linear-gradient(180deg,#FFFFFF 12%,#EEF2F7 52%,#F3CFA6 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important}
-.wcard .wbk b{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;color:#F6D7B4!important}
-.wcard .wbk>i,.wcard .wsi>b{background:linear-gradient(135deg,#FF4A55,#E2232D 50%,#A50F1E)!important;box-shadow:0 8px 18px -6px rgba(226,35,45,.65)!important}
-.wcard .wbk{background:linear-gradient(135deg,rgba(20,22,28,.55),rgba(20,22,28,.35))!important}
-.wcard .winc>i{background:linear-gradient(135deg,rgba(20,22,28,.5),rgba(20,22,28,.3))!important}
-.wstrip.wcard{background:radial-gradient(60% 80% at 88% 20%,rgba(200,16,46,.28),transparent 70%),radial-gradient(45% 60% at 70% 110%,rgba(120,128,142,.22),transparent 70%),linear-gradient(120deg,#4A4F5A,#3D424C 45%,#44464E 80%,#4A4B52)!important}
-.wstrip.wcard:hover{box-shadow:0 36px 70px -26px rgba(27,30,37,.95),0 0 0 1px rgba(243,207,166,.35) inset!important}
-.lbp-tag u{color:#F6D7B4!important}
-.wcard .wsn{-webkit-mask-size:100% 100%;mask-size:100% 100%;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
-
-/* Google-Logo an der Bewertungs-Karte (Tiry 23.11.2026): weiße Glas-Plakette mit dem originalen G oben rechts */
-.score>.sgl{position:absolute!important;bottom:clamp(18px,2.2vw,28px);right:clamp(18px,2.2vw,28px);z-index:2;display:grid;place-items:center;width:58px;height:58px;border-radius:50%;
- background:radial-gradient(120% 120% at 30% 20%,#fff 0%,#F7F9FC 55%,#E6EBF2 100%);box-shadow:inset 0 1px 0 #fff,0 0 0 1px rgba(27,30,37,.06),0 12px 24px -12px rgba(27,30,37,.45),0 3px 8px -4px rgba(27,30,37,.2)}
-.score>.sgl svg{width:30px;height:30px;display:block}
-@media (max-width:720px){.score>.sgl{width:48px;height:48px}.score>.sgl svg{width:25px;height:25px}}
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -3793,7 +3775,7 @@ m696 -454 c28 -13 46 -31 55 -51 22 -53 -50 -177 -173 -300 -187 -186 -647
 
  <div class="sec zone z-lilac">
   <div class="wrap voices">
-   <div class="score pre"><i class="sgl" aria-hidden="true" title="Google"><svg viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg></i><b data-g="r">4,8</b><div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div><span data-g="n">221 Rezensionen bei Google</span></div>
+   <div class="score pre"><b data-g="r">4,8</b><div class="stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div><span data-g="n">221 Rezensionen bei Google</span></div>
    <div class="pre" style="--d:.1s">
     <p class="eyebrow">Das sagen <b>unsere Kunden</b></p>
     <div class="qwrap" id="qs" style="margin-top:22px">
@@ -5659,9 +5641,9 @@ const LIVE=[['schrift','Schriften lokal eingebunden – keine Verbindung zu Goog
  ['seo','Jeder Bereich als eigene Adresse (Unterseite) für Google + Sitemap; „noindex“ aus dem Prototyp entfernen'],['gbp','Google-Unternehmensprofil: Website-Link und Öffnungszeiten abgleichen']];
 function admBew(b){const d=ADM.bew||BEW0;if(!ADM.bewEd)ADM.bewEd={score:d.score||'4,8',items:JSON.parse(JSON.stringify(d.items||[]))};const E=ADM.bewEd;
  b.innerHTML='<form class="admf acard" id="admBewF"><label>Durchschnitt bei Google (wie im Google-Profil angezeigt)<input name="score" value="'+esc(E.score)+'" placeholder="z. B. 4,8"></label>'+
-  '<div class="bwl">'+E.items.map((x,i)=>'<div class="acard" style="padding:14px;margin:0 0 10px;display:grid;gap:8px"><label>Bewertung '+(i+1)+(x.g?' · automatisch von Google (KI-Zentrale)':'')+'<textarea rows="3" data-bw="t|'+i+'">'+esc(x.t||'')+'</textarea></label><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:end"><label style="flex:1;min-width:180px">Name (wie bei Google, gekürzt)<input data-bw="n|'+i+'" value="'+esc(x.n||'')+'"></label><label class="ck"><input type="checkbox" data-bw="aus|'+i+'"'+(x.aus?' checked':'')+'> ausblenden</label><button type="button" class="ghost" data-bwup="'+i+'"'+(i?'':' disabled')+'>↑</button><button type="button" class="ghost" data-bwdel="'+i+'">Löschen</button></div></div>').join('')+'</div>'+
+  '<div class="bwl">'+E.items.map((x,i)=>'<div class="acard" style="padding:14px;margin:0 0 10px;display:grid;gap:8px"><label>Bewertung '+(i+1)+'<textarea rows="3" data-bw="t|'+i+'">'+esc(x.t||'')+'</textarea></label><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:end"><label style="flex:1;min-width:180px">Name (wie bei Google, gekürzt)<input data-bw="n|'+i+'" value="'+esc(x.n||'')+'"></label><label class="ck"><input type="checkbox" data-bw="aus|'+i+'"'+(x.aus?' checked':'')+'> ausblenden</label><button type="button" class="ghost" data-bwup="'+i+'"'+(i?'':' disabled')+'>↑</button><button type="button" class="ghost" data-bwdel="'+i+'">Löschen</button></div></div>').join('')+'</div>'+
   '<div class="admrow"><button type="button" class="ghost" data-bwadd>+ Bewertung hinzufügen</button><button class="cta" type="submit">Speichern</button></div>'+
-  '<p class="admnote">Nur echte Google-Bewertungen übernehmen: Text unverändert, Name so gekürzt wie bei Google. Leer gelassen = die drei bisherigen Bewertungen bleiben. Die KI-Zentrale trägt neue 5-Sterne-Bewertungen automatisch ein; „ausblenden“ bleibt dabei erhalten, Löschen holt sie beim nächsten Abgleich zurück. <a href="https://g.page/r/CYlWWOy1HBsvEBM/review" target="_blank" rel="noopener">Google-Profil öffnen</a></p></form>'}
+  '<p class="admnote">Nur echte Google-Bewertungen übernehmen: Text unverändert, Name so gekürzt wie bei Google. Leer gelassen = die drei bisherigen Bewertungen bleiben. <a href="https://g.page/r/CYlWWOy1HBsvEBM/review" target="_blank" rel="noopener">Google-Profil öffnen</a></p></form>'}
 function admLive(b){const L=ADM.live.done||{};const n=LIVE.filter(([k,,a])=>a||L[k]).length;
  b.innerHTML='<div class="acard"><h4>'+n+' von '+LIVE.length+' erledigt</h4><p class="admnote" style="margin-bottom:14px">Vor dem Livegang: Die Seite ist ein Prototyp und nicht öffentlich. Haken werden gespeichert. Grüne Punkte hat der Prototyp schon erledigt.</p>'+
   LIVE.map(([k,t,a])=>'<label class="ck" style="display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-top:1px solid rgba(255,255,255,.08)"><input type="checkbox" data-live="'+k+'"'+(a||L[k]?' checked':'')+(a?' disabled':'')+'><span>'+esc(t)+(a?' <b style="color:#34D399">· erledigt im Prototyp</b>':'')+'</span></label>').join('')+'</div>'}
@@ -5673,7 +5655,7 @@ $('#adm').addEventListener('click',e=>{const t=e.target;if(!ADM.bewEd)return;
  const d=t.closest('[data-bwdel]');if(d){ADM.bewEd.items.splice(+d.dataset.bwdel,1);admRender();return}
  const u=t.closest('[data-bwup]');if(u){const i=+u.dataset.bwup,a=ADM.bewEd.items;if(i>0){[a[i-1],a[i]]=[a[i],a[i-1]];admRender()}}});
 $('#adm').addEventListener('submit',async e=>{if(e.target.id!=='admBewF')return;e.preventDefault();const E=ADM.bewEd;E.score=e.target.score.value.trim();
- const items=E.items.map(x=>Object.assign({t:String(x.t||'').trim(),n:String(x.n||'').trim(),aus:!!x.aus},x.g?{g:String(x.g)}:{})).filter(x=>x.t); /* g = Google-Kennung, damit die KI-Zentrale „ausblenden“ beibehält */
+ const items=E.items.map(x=>({t:String(x.t||'').trim(),n:String(x.n||'').trim(),aus:!!x.aus})).filter(x=>x.t);
  try{await ADM.db.doc('site/bewertungen').set({score:E.score,items,ts:Date.now()});admToast('Bewertungen sind online.');admLog('Bewertungen gespeichert ('+items.length+')')}catch(_){admToast('Speichern fehlgeschlagen.')}});
 /* ===================== Bearbeiten-Modus (13.11.2026): Texte + Bilder direkt auf der Homepage ändern ===================== */
 const TX={ov:{},img:{},on:false,d:{},di:{},cur:null};const TXO=new Map(),TXI=new Map();
@@ -6717,8 +6699,3 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 </html>
-<script>/* Winterkarte: Schnee über Schriftflächen nur 12 % (wie #snow auf der Startseite) */
-(function(){function m(){document.querySelectorAll('.wcard').forEach(function(c){var s=c.querySelector('.wsn');if(!s)return;var r=c.getBoundingClientRect();if(!r.width)return;var k=Math.min(2,devicePixelRatio||1)*.5,w=Math.ceil(r.width*k),h=Math.ceil(r.height*k),v=document.createElement('canvas');v.width=w;v.height=h;var x=v.getContext('2d');x.fillStyle='#000';x.fillRect(0,0,w,h);x.globalCompositeOperation='destination-out';x.filter='blur('+(6*k)+'px)';x.fillStyle='rgba(0,0,0,.88)';
-c.querySelectorAll('.wcp small,.wcp>b,.wcp em,.wst,.wbk,.winc>*,.wcd>span,.wgo,.wnote').forEach(function(e){var q=e.getBoundingClientRect();if(!q.width)return;x.fillRect((q.left-r.left-8)*k,(q.top-r.top-8)*k,(q.width+16)*k,(q.height+16)*k)});
-var u='url('+v.toDataURL()+')';s.style.webkitMaskImage=u;s.style.maskImage=u})}
-var t;function g(){clearTimeout(t);t=setTimeout(m,150)}addEventListener('resize',g);addEventListener('load',g);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(g);g()})();</script>
