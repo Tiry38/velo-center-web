@@ -2933,6 +2933,8 @@ html body [class*=hgTx],html body [class*=hgTx] *{paint-order:stroke fill}
 html body .hgTxL,html body .hgTxL *{-webkit-text-stroke:max(2.2px,.06em) rgba(255,255,255,.95);text-shadow:0 0 3px rgba(255,255,255,.8),0 0 8px rgba(255,255,255,.35)!important}
 html body .hgTxD,html body .hgTxD *{-webkit-text-stroke:max(2px,.05em) rgba(14,16,22,.5);text-shadow:0 1px 4px rgba(8,10,14,.55)!important}
 html body .hgTxG,html body [class*=hgTx] .hgTxG{-webkit-text-stroke:0!important;text-shadow:none!important;filter:drop-shadow(0 0 1px rgba(255,255,255,.95)) drop-shadow(0 0 1px rgba(255,255,255,.9)) drop-shadow(0 1px 6px rgba(255,255,255,.55))}
+/* i:SY-Experte-Zitate (Tiry 24.11.2026): zart getönte Karte auf dem Foto – Schrift bekommt denselben weißen Lichtsaum wie freie Schrift */
+html body .isyq blockquote :is(p,cite,a){paint-order:stroke fill;-webkit-text-stroke:max(2.2px,.06em) rgba(255,255,255,.95);text-shadow:0 0 3px rgba(255,255,255,.8),0 0 8px rgba(255,255,255,.35)!important}
 
 /* Alle Glasplatten aus (Tiry 23.11.2026) – gpBuild markiert nur noch die Schrift */
 #hgGl{display:none!important}
@@ -7214,8 +7216,11 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
    Hereinscrollen an derselben Stelle fortgesetzt. Sichtbar ändert sich nichts: alles im Bild läuft immer (keine Reduce-Regel). */
 (function(){if(!window.IntersectionObserver||!document.head)return;
  var st=document.createElement('style');st.id='vSpar';st.textContent='.vOff,.vOff::before,.vOff::after{animation-play-state:paused!important}';document.head.appendChild(st);
- var seen=new WeakSet(),io=new IntersectionObserver(function(es){for(var i=0;i<es.length;i++)es[i].target.classList.toggle('vOff',!es[i].isIntersecting)},{rootMargin:'240px 4000px 240px 4000px'});
- function add(el){if(!el||el.nodeType!==1||seen.has(el)||el===document.documentElement||el===document.body)return;seen.add(el);io.observe(el)}
+ /* Fahrzeuge (i:SY-Bus, Tiry 24.11.2026: „fährt nicht“): der Bus startet jede Runde rechts außerhalb der Straße (overflow:hidden) und galt dort als
+    unsichtbar → angehalten, kam nie wieder. Teile in einer .road werden daher über die ganze Straße beobachtet, nicht einzeln. */
+ var seen=new WeakSet(),HM=new Map(),io=new IntersectionObserver(function(es){for(var i=0;i<es.length;i++){var t=es[i].target,off=!es[i].isIntersecting,L=HM.get(t);if(L)L.forEach(function(x){x.classList.toggle('vOff',off)});else t.classList.toggle('vOff',off)}},{rootMargin:'240px 4000px 240px 4000px'});
+ function add(el){if(!el||el.nodeType!==1||seen.has(el)||el===document.documentElement||el===document.body)return;seen.add(el);
+  var h=el.closest&&el.closest('.road');if(h){var L=HM.get(h);if(!L){HM.set(h,L=[]);io.observe(h)}L.push(el);return}io.observe(el)}
  function scan(){if(!document.getAnimations)return;var a=document.getAnimations();for(var i=0;i<a.length;i++){var t=a[i].effect&&a[i].effect.target;if(t&&a[i].animationName)add(t)}}
  document.addEventListener('animationstart',function(e){add(e.target)},true);
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',scan);else scan();
