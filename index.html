@@ -3957,7 +3957,7 @@ m696 -454 c28 -13 46 -31 55 -51 22 -53 -50 -177 -173 -300 -187 -186 -647
     <div class="tph"><span class="ic"><svg><use href="#i-bike"/></svg></span><h2>Beratung &amp; Probefahrt</h2></div>
     <p class="lead">Wir wollen dir nicht irgendein E-Bike verkaufen, sondern das Rad finden, das wirklich zu dir passt.</p>
     <ul class="tfl">
-     <li><b>Über 300 E-Bikes vor Ort</b> zum Anschauen, Vergleichen und Probefahren.</li>
+     <li><b>Über 250 E-Bikes vor Ort</b> zum Anschauen, Vergleichen und Probefahren.</li>
      <li><b>Persönliche Beratung:</b> Wir gehen genau auf deine Wünsche ein und zeigen dir eine passende Auswahl.</li>
      <li><b>Probefahrt</b> ausdrücklich erwünscht. Auf Wunsch begleiten wir dich.</li>
      <li><b>i:SY übers Wochenende testen:</b> Als i:SY Experte geben wir dir ein i:SY gern länger mit.</li>
@@ -5721,7 +5721,7 @@ function steuer(gJahr,kl,ki){const vor=.093*Math.min(gJahr,101400)+(.0875+.018)*
  const est=sp?2*est26(zve/2):kl==='5'?est5(zve):est26(zve);const fg=sp?40700:20350;const soli=est<=fg?0:Math.min(.055*est,.119*(est-fg));return est+soli+(ki?est*.09:0)}
 function sozial(b,kd){return .093*Math.min(b,8450)+.013*Math.min(b,8450)+.0875*Math.min(b,5812.5)+(kd?.018:.024)*Math.min(b,5812.5)}
 function drCalc(){const P=DR.p,B=DR.b,R0=DR.r!==''&&+DR.r>0?+DR.r:Math.round(P*DR.f)/100,V=DR.vz?Math.max(2.38,Math.round(P*.3)/100):0,SPm=Math.round(DRSP[DR.sp]*119)/100,R=R0+V+SPm,U=Math.max(0,R-DR.z),GV=.0025*Math.floor(P/100)*100,B1=B-U+GV;
- const st=(steuer(12*B,DR.k,DR.ki)-steuer(12*B1,DR.k,DR.ki))/12,sv=sozial(B,DR.kd)-sozial(B1,DR.kd),net=Math.max(0,U-st-sv);return{R,R0,V,SPm,U,GV,st,sv,net,tot:net*36,P}}
+ const st=Math.round((steuer(12*B,DR.k,DR.ki)-steuer(12*B1,DR.k,DR.ki))/12*100)/100,sv=Math.round((sozial(B,DR.kd)-sozial(B1,DR.kd))*100)/100,net=Math.max(0,Math.round((U-st-sv)*100)/100);return{R,R0,V,SPm,U,GV,st,sv,net,tot:net*36,P}}
 const e2=n=>(Math.round(n*100)/100).toLocaleString('de-DE',{minimumFractionDigits:2,maximumFractionDigits:2})+' €',e0=n=>Math.round(n).toLocaleString('de-DE')+' €';
 function drSync(){const f=$('#drF');if(!f)return;f.p.value=DR.p;f.pr.value=DR.p;f.b.value=DR.b;f.br.value=DR.b;drDraw()}
 function drDraw(){const o=$('#drO');if(!o)return;const c=drCalc(),f=$('#drF');f.querySelector('[name=po]').textContent=e0(DR.p);f.querySelector('[name=bo]').textContent=e0(DR.b);
